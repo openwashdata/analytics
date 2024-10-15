@@ -80,10 +80,10 @@ if (!dir.exists("data")) {
 
 fs::dir_create("data", folder_name)
 
-write_csv(country_data, file.path("data", folder_name, "country_data.csv"))
-write_csv(source_data, file.path("data", folder_name, "source_data.csv"))
-write_csv(browser_data, file.path("data", folder_name, "browser_data.csv"))
-write_csv(timeseries_data, file.path("data", folder_name, "time_series_data.csv"))
+write_csv(country_data, file.path("data", folder_name, paste(folder_name,"country_data.csv",sep="_")))
+write_csv(source_data, file.path("data", folder_name, paste(folder_name,"source_data.csv",sep="_")))
+write_csv(browser_data, file.path("data", folder_name, paste(folder_name,"browser_data.csv",sep="_")))
+write_csv(timeseries_data, file.path("data", folder_name, paste(folder_name,"timeseries_data.csv",sep="_")))
 
 print(paste("Successfully saved data to", folder_name, sep=" "))
 

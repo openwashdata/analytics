@@ -65,9 +65,9 @@ get_survey_data <- function(sheet_url = "",
     data <- clean_survey_data(data)
 
     # Write data to CSV
-    write_csv(data, file.path("data", sheet_name, "data.csv"))
+    write_csv(data, file.path("data", sheet_name, "postsurvey.csv"))
 
-    print(paste("Data saved to", file.path("data", sheet_name, "data.csv")))
+    print(paste("Data saved to", file.path("data", sheet_name, "postsurvey.csv")))
   }
 
   # Call the get_data_gsheet function
