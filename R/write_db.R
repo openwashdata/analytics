@@ -17,6 +17,7 @@ write_table = function(file, data, con) {
   tab_name = tools::file_path_sans_ext(basename(file))
   if (!dbExistsTable(con, tab_name)) {
     dbCreateTable(con, tab_name, data)
+    dbWriteTable(con, tab_name, data, overwrite=TRUE)
     print(paste("Created new table: ", tab_name))
   }
   else {
@@ -33,15 +34,19 @@ write_db = function(user="", password="") {
       # Check file extension
       if (grepl(".csv", file)) {
         # Read the file
-        data = read_csv(file)
+        data = read.csv(file)
+        print(head(data))
         print(paste("Read csv:", file, sep=" "))
         write_table(file, data, con)
+        # Wait 3 seconds
+        Sys.sleep(3)
       }
       else if (grepl(".rda",file)){
         # Load the file
         load(file)
         print(paste("Loaded rda:", file, sep=" "))
         write_table(file, data, con)
+        Sys.sleep(3)
       }
       else {
         print(paste("Unknown file type", file, sep=" "))
