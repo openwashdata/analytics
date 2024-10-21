@@ -59,6 +59,6 @@ get_space_data <- function(space_id=426916) {
   fs:: dir_create("data", folder_name)
 
   # Save the data to a CSV file
-  write_csv(all_data, file.path("data", folder_name, "space_member_daily_usage.csv"))
+  write_csv(all_data, file.path("data", folder_name, "pscloud.csv"))
 }
 

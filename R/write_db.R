@@ -14,18 +14,18 @@ connect_db = function(user="", password="") {
 }
 
 write_table = function(file, data, con) {
-  tab_name = unlist(strsplit(file,"\\."))[1]
-  print(tab_name)
+  tab_name = tools::file_path_sans_ext(basename(file))
   if (!dbExistsTable(con, tab_name)) {
     dbCreateTable(con, tab_name, data)
-    print("Created new table:", tab_name, sep=" ")
+    print(paste("Created new table: ", tab_name))
   }
   else {
   dbWriteTable(con, tab_name, data, overwrite = TRUE)
   }
 }
 
-write_db = function() {
+write_db = function(user="", password="") {
+  con <- connect_db(user,password)
   # Loop through all folders in the data folder
   for (folder in list.dirs("data", full.names = FALSE)) {
     # Loop through all files in the folder
