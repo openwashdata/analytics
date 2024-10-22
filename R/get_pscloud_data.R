@@ -3,7 +3,7 @@ library(rscloud)
 library(lubridate)
 
 # Function to pull daily usage data from posit cloud for the past 365 days.
-#' Pull Data
+#' Pull Data Posit Cloud
 #'
 #' @param space_id ID of the space to retrieve data from. Defaults to the DS$OWD space ID.
 #'

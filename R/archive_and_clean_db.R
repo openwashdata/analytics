@@ -14,7 +14,20 @@ connect_db = function(user="", password="") {
 }
 
 # All existing tables in the database are copied and archived
+#' Title
+#'
+#' @param user Username for the database
+#' @param password Password to login for given username
+#'
+#' @details This is a helper function to archive data before tables are deleted. Old archives are owverwritten.
+#'
+#' @return All tables in the database are copied and archived
+#' @export
+#'
+#' @examples
 archive_db = function(user="", password="") {
+
+
   con <- connect_db(user,password)
   # Get all tables in the database
   tables <- dbListTables(con)
@@ -35,7 +48,20 @@ archive_db = function(user="", password="") {
 }
 
 # All tables in the database are deleted, except archives and specified tables
+#' Delete Tables
+#'
+#' @param user Username for the database
+#' @param password Password to login for given username
+#'
+#' @details This is a helper function to clean the database. It deletes all tables except admin generated and archives.
+#'
+#' @return Deletes all tables except admin generated and archives.
+#' @export
+#'
+#' @examples
 clean_db = function(user="", password="") {
+
+
   con <- connect_db(user,password)
   # Get all tables in the database
   tables <- dbListTables(con)
@@ -50,7 +76,19 @@ clean_db = function(user="", password="") {
   }
 }
 
+#' Cleans and archives the remote Postgres Database
+#'
+#' @param user Username for the database
+#' @param password Password to login for given username
+#'
+#' @details This is a helper function to clean and archive the database. It first archives all tables and then deletes them.
+#'
+#' @return Archives all existing tables (except admin) and deletes them to allow new data to be entered
+#' @export
+#'
+#' @examples
 clean_and_archive_db = function(user="", password="") {
+
   # Ask for confirmation
   cat("This will archive all existing tables and delete them. Are you sure you want to continue?\n1. Yes\n2. No: ")
   response <- readline()

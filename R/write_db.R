@@ -13,7 +13,22 @@ connect_db = function(user="", password="") {
   return(con)
 }
 
+#' Write To Database Table
+#'
+#' @param file filepath of data being written
+#' @param data data to be written to the database
+#' @param con variable, connection to the Postgres database
+#'
+#' @details This is a helper function to check if the table exists, if not it creates the table and writes to it.
+#' If the table exists, it overwrites existing data.
+#' @return Writes the data to the database
+#' @export
+#'
+#' @examples
 write_table = function(file, data, con) {
+
+
+
   tab_name = tools::file_path_sans_ext(basename(file))
   if (!dbExistsTable(con, tab_name)) {
     dbCreateTable(con, tab_name, data)
@@ -25,7 +40,23 @@ write_table = function(file, data, con) {
   }
 }
 
+#' Write to Database
+#'
+#' @param user Username for the database
+#' @param password Password for above username
+#'
+#' @details Change the host, port and database name to connect to chosen database.
+#'
+#' @return Writes all csv and rda files in the data folder to the database
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' write_db("janedoe", "areallystrongpassword")
+#' }
+#'
 write_db = function(user="", password="") {
+
   con <- connect_db(user,password)
   # Loop through all folders in the data folder
   for (folder in list.dirs("data", full.names = FALSE)) {
