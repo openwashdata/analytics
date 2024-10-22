@@ -1,0 +1,64 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, warnings=FALSE, echo=FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+<!-- badges: start -->
+
+<!-- badges: end -->
+
+
+# analytics
+The goal of `analytics` is to provide an easy way to access and analyze "dark" data generated before, during, and after the Data Science for Open Wash Data Course. 
+
+
+## Installation
+To install the package, you can use the following code:
+```{r, warning=FALSE, message=FALSE}
+# install.packages("devtools")
+devtools::install_github("openwashdata/analytics")
+```
+
+
+## How to use the package 
+
+The package consists of several helper functions that are broadly divided into 3 categories:
+
+1. **Data Retrieval Functions:** Retreive data from Google Drive, Github, Plausible, and Posit Cloud.
+
+2. **Data Storage:** Store the data securely in a shared Postgres Database.
+
+3. **Data Analysis:** Data analysis and a dashboard (under development)
+
+### Key Considerations before using the package
+
+This package retrieves data from secure locations such as Google Drive, Github and Posit Cloud. To access the data, you will need to have the necessary permissions. 
+
+**Note**: If you do not plan to retrieve raw data, the only permissions needed are for the shared Postgres database. 
+
+See the permissions and API keys section below to see instructions on how to obtain these permissions and who you can contact to retrieve these. In general you need: 
+
+1. A Google account (preferably in the ETHZ domain, e.g. yourname@ethz.ch) or access to credentials from a Google Service Account. 
+2. A Github account with access to the repositories within openwashdata, and a Github PAT (Personal Access Token). See: [Managing Github PAT?](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
+3. Access to the Posit Cloud Space for the Data Science for Open WASH Data course as well as an [API key for Posit Cloud.](https://docs.posit.co/connect/user/api-keys/)
+4. Credentials for the shared Postgres Database (only if you plan to write new data to the database)
+5. API key for Plausible to download website analytics data. [API for Plausible.](https://plausible.io/docs/stats-api#get-apiv1statsbreakdown)
+
+### Permissions and API keys
+1. The function `get_survey_data` retrieves data from google drive. For this you need **either** a google account or access to a [service account](https://cloud.google.com/iam/docs/service-account-overview) in the form of a json file (see examples for more details). If both are supplied, the google account will be preferred. In this step you may be prompted by Google to provide permissions to the `googledrive` package. 
+
+2. The function `get_github_data` retrieves data from Github. For this you need a Github account and a [Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token). The Personal Access Token must have access to the ds4owd repo.
+
+3. The function `get_posit_data` retrieves data from Posit Cloud. For this you need an account on Posit cloud and access to the Data Science for Open WASH Data course space. You also need an [API key](https://docs.posit.co/connect/user/api-keys/).
+
+
