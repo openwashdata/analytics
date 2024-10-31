@@ -30,35 +30,81 @@ devtools::install_github("openwashdata/analytics")
 ```
 
 
-## How to use the package 
+## What is this package for? 
 
-The package consists of several helper functions that are broadly divided into 3 categories:
+The Data Science for Open WASH Data Course conducted by Global Health Engineering (GHE) at ETH Zürich generates data on participants' engagement with the course, previous experiences with programming and take-aways from the course. This package makes it easier to access data stored in a variety of formats and provide a consolidate storage for it. In the future, this data will be used to provide an overview of the impact of the course. 
 
-1. **Data Retrieval Functions:** Retreive data from Google Drive, Github, Plausible, and Posit Cloud.
+### Who should use this package? 
 
-2. **Data Storage:** Store the data securely in a shared Postgres Database.
+In short, anyone can use this package. However, access to raw data is restricted to members of GHE and those invited by members of GHE. A data package with data from the first iteration of the course will be available soon. This data has been anonymized and can be used by anyone.
 
-3. **Data Analysis:** Data analysis and a dashboard (under development)
+## Where is the data retrieved from? 
 
-### Key Considerations before using the package
+1. Google Drive: The GHE shared google drive collects data from survey responses. This data is stored in Google Sheets. 
 
-This package retrieves data from secure locations such as Google Drive, Github and Posit Cloud. To access the data, you will need to have the necessary permissions. 
+2. Posit Cloud: Data about usage of a shared Posit Cloud space is retrieved from Posit cloud. The shared space was accessible to all course participants. 
 
-**Note**: If you do not plan to retrieve raw data, the only permissions needed are for the shared Postgres database. 
+3. Plausible: The website for the course is hosted on Plausible. Data about visitors, locations of visits and other trends in user interactions with the website are retrieved from Plausible.
 
-See the permissions and API keys section below to see instructions on how to obtain these permissions and who you can contact to retrieve these. In general you need: 
+4. Github: Data from the course is also present on Github. This is generally course participants' locations. This is anonymized.
 
-1. A Google account (preferably in the ETHZ domain, e.g. yourname@ethz.ch) or access to credentials from a Google Service Account. 
-2. A Github account with access to the repositories within openwashdata, and a Github PAT (Personal Access Token). See: [Managing Github PAT?](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
-3. Access to the Posit Cloud Space for the Data Science for Open WASH Data course as well as an [API key for Posit Cloud.](https://docs.posit.co/connect/user/api-keys/)
-4. Credentials for the shared Postgres Database (only if you plan to write new data to the database)
-5. API key for Plausible to download website analytics data. [API for Plausible.](https://plausible.io/docs/stats-api#get-apiv1statsbreakdown)
+## Permissions and API Keys
 
-### Permissions and API keys
-1. The function `get_survey_data` retrieves data from google drive. For this you need **either** a google account or access to a [service account](https://cloud.google.com/iam/docs/service-account-overview) in the form of a json file (see examples for more details). If both are supplied, the google account will be preferred. In this step you may be prompted by Google to provide permissions to the `googledrive` package. 
+Certain permissions and API Keys are needed to access the data. 
 
-2. The function `get_github_data` retrieves data from Github. For this you need a Github account and a [Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token). The Personal Access Token must have access to the ds4owd repo.
+1. Google Drive:
+- A gmail account (username and password) with access to the relevant sheets OR 
+- A google service account with at least `read` access to the Google Sheet you need to read.
+- If logging in for the first time, you will be prompted to authenticate your account and provide access permissions to the `googledrive` library
 
-3. The function `get_posit_data` retrieves data from Posit Cloud. For this you need an account on Posit cloud and access to the Data Science for Open WASH Data course space. You also need an [API key](https://docs.posit.co/connect/user/api-keys/).
+2. Posit Cloud:
+- A posit cloud account 
+- Access to the data science for open wash data course space on Posit Cloud
+- [An API key with access to read data from the course space](https://docs.posit.co/connect/user/api-keys/)
+- **Note**: This code utilises the rscloud library which handles authentication silently. There is no need to pass API keys to the function but one needs to be generated. If required, please use `rscloud_whoami()` to re-authenticate
+
+3. Plausible:
+- [API key with access to read analytics data from Plausible](https://plausible.io/docs/stats-api#get-apiv1statsbreakdown)
+
+4. Github: 
+- A github account with access to the repository where the data is stored
+- [A personal access token with repo scope to access the data](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)
+
+## Shared Database
+
+All data pulled by this library is also available in a postgres database. Access to this database is limited. If you have the username and password for this data, you can access it directly using your credentials. 
+
+On the other hand, you can also write to the database. This function also cleans and archives old data. Write and Delete permission to the database is required for this.
+
+## Example
+
+For detailed usage of and documentation of each function, please refer to the vignettes.
+
+```{r, eval=FALSE}
+library(analytics)
+library(httr)
+library(jsonlite)
+library(googledrive)
+library(googlesheets4)
+get_plausible_data(site_url="ds4owd-001.github.io/website", pagewise=TRUE, token="SECRET_PLAUSIBLE_TOKEN")
+get_survey_data(sheet_url="docs.google.com/spreadsheets", email="yourname@ethz.ch", n_course_modules=10)
+get_pscloud_data(space_id="12345")
+```
+
+## Requirements
+
+R libraries utilized in the code are: 
+- `RPostgres`
+- `googledrive`
+- `googlesheets4`
+- `rscloud`
+- `httr`
+- `jsonlite`
+- `lubridate`
+- `tidyverse`
+
+Other standard libraries should already be installed in your default R environment.
+
+
 
 

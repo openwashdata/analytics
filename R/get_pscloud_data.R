@@ -13,7 +13,7 @@ library(lubridate)
 #' @examples
 #' space_id <- 999999
 #' get_space_data(space_id)
-get_space_data <- function(space_id=426916) {
+get_pscloud_data <- function(space_id=426916) {
   # Assuming you've already set up your space connection
   pcloud001 <- rscloud_space(space_id = space_id)
 
