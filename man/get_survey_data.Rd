@@ -12,22 +12,23 @@ get_survey_data(
 )
 }
 \arguments{
-\item{sheet_url}{URL to the google sheet. Defaults to post course survey for 2023}
+\item{sheet_url}{URL to the Google Sheet. Defaults to the post-course survey for 2023.}
 
-\item{service_acc_path}{Path to the JSON file of the service account that has access to the Google Sheet. No Default, not required if email is provided}
+\item{service_acc_path}{Path to the JSON file of the service account with access to the Google Sheet. Not required if `email` is provided.}
 
-\item{email}{Email address of the user that has access to the Google Sheet. Defaults to dummy email, Either this or the service account path is required.}
+\item{email}{Email address of the user with access to the Google Sheet. Defaults to a dummy email. Either this or `service_acc_path` is required.}
 
-\item{n_course_modules}{Number of modules in the course. Default is 10}
+\item{n_course_modules}{Number of modules in the course. Default is 10.}
 }
 \value{
-A CSV file with the cleaned survey data
+A CSV file with the cleaned survey data.
 }
 \description{
-This code is used to authenticate a gmail account (or utilise a service account) and retreive data from the post survey sheet for the DS4OWD course.
+Authenticate using a Gmail account or a service account and retrieve data from the post-survey sheet for the DS4OWD course.
 }
 \examples{
-\dontrun {
-get_survey_data(sheet_url = "docs.google.com/spreadsheets/d/YOUR_SHEET_ID/edit", email = "jane.doe@gmail.com", n_course_modules = 10)
+\dontrun{
+get_survey_data(sheet_url = "docs.google.com/spreadsheets/d/YOUR_SHEET_ID/edit",
+                email = "jane.doe@gmail.com", n_course_modules = 10)
 }
 }

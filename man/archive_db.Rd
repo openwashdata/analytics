@@ -18,5 +18,5 @@ All tables in the database are copied and archived
 Title
 }
 \details{
-This is a helper function to archive data before tables are deleted. Old archives are owverwritten.
+This is a helper function to archive data before tables are deleted. Old archives are overwritten.
 }

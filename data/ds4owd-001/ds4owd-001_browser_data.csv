@@ -1,17 +1,18 @@
-pageviews,browser,visitors,visit_duration,visits,bounce_rate
-15947,Chrome,3274,242,4310,38
-3689,Microsoft Edge,672,279,933,32
-1932,Firefox,291,310,399,29
-1349,Safari,373,183,450,53
-415,Mobile App,107,110,113,58
-199,Samsung Browser,93,160,97,53
-63,Opera,29,89,33,55
-22,DuckDuckGo Privacy Browser,10,64,12,83
-20,Phoenix Browser,11,88,11,55
-17,Huawei Browser Mobile,5,346,6,33
-15,UC Browser,8,242,8,50
-10,Yandex Browser,10,0,10,100
-8,vivo Browser,1,694,1,0
-3,(not set),3,0,3,100
-2,MIUI Browser,1,1,1,0
-2,Notion,1,8,1,0
+browser,pageviews,visitors,visit_duration,visits,bounce_rate
+Chrome,16182,3344,240,4393,38
+Microsoft Edge,3709,679,279,943,32
+Firefox,2071,309,299,422,28
+Safari,1377,377,182,454,53
+Mobile App,434,110,111,116,57
+Samsung Browser,199,93,160,97,53
+Opera,64,30,86,34,56
+DuckDuckGo Privacy Browser,22,10,64,12,83
+Phoenix Browser,20,11,88,11,55
+Huawei Browser Mobile,17,5,346,6,33
+UC Browser,15,8,242,8,50
+Yandex Browser,10,10,0,10,100
+vivo Browser,8,1,694,1,0
+(not set),3,3,0,3,100
+MIUI Browser,2,1,1,1,0
+Notion,2,1,8,1,0
+Ecosia,1,1,0,1,100

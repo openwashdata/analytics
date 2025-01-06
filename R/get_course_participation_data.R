@@ -1,4 +1,3 @@
-library(devtools)
 devtools::install_github("openwashdata/ds4owdretention")
 
 

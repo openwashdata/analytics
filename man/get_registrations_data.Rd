@@ -11,9 +11,11 @@ get_registrations_data(
 )
 }
 \arguments{
-\item{download_token}{- See README on how to obtain this token}
+\item{repo}{The name of the repository (default: "ds4owd")}
 
-\item{github_token}{- GitHub Personal Access Token (PAT) with 'repo' scope}
+\item{download_token}{See README on how to obtain this token}
+
+\item{github_token}{GitHub Personal Access Token (PAT) with 'repo' scope}
 }
 \value{
 Exports RDA and CSV files for locations, presurvey, and roster data
@@ -23,5 +25,4 @@ Title: Download and Load Data
 }
 \examples{
 download_and_load_data(download_token = DOWNLOAD_TOKEN, github_token = GITHUB_PAT)
-
 }

@@ -8,6 +8,8 @@ get_data(url, TOKEN)
 }
 \arguments{
 \item{url}{A character string specifying the URL to send the request to.}
+
+\item{TOKEN}{A character string specifying the authentication token.}
 }
 \value{
 A list of results from the request.
@@ -17,6 +19,6 @@ Send Request to Plausible for Data
 }
 \examples{
 \dontrun{
-country_data <- get_data(country_url)
+country_data <- get_data(country_url, token = "MY_TOKEN")
 }
 }
