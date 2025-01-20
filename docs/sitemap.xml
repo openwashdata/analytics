@@ -1,0 +1,21 @@
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>/404.html</loc></url>
+<url><loc>/LICENSE-text.html</loc></url>
+<url><loc>/articles/Examples.html</loc></url>
+<url><loc>/articles/index.html</loc></url>
+<url><loc>/authors.html</loc></url>
+<url><loc>/index.html</loc></url>
+<url><loc>/reference/archive_db.html</loc></url>
+<url><loc>/reference/clean_and_archive_db.html</loc></url>
+<url><loc>/reference/clean_db.html</loc></url>
+<url><loc>/reference/clean_survey_data.html</loc></url>
+<url><loc>/reference/get_data.html</loc></url>
+<url><loc>/reference/get_plausible_data.html</loc></url>
+<url><loc>/reference/get_pscloud_data.html</loc></url>
+<url><loc>/reference/get_registrations_data.html</loc></url>
+<url><loc>/reference/get_survey_data.html</loc></url>
+<url><loc>/reference/index.html</loc></url>
+<url><loc>/reference/write_db.html</loc></url>
+<url><loc>/reference/write_table.html</loc></url>
+</urlset>
+

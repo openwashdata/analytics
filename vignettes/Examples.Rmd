@@ -1,0 +1,119 @@
+---
+title: "Examples"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{examples}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(analytics)
+```
+
+
+## get_pscloud_data(space_id)
+
+This function retrieves Posit Cloud Data from selected workspace, which is specified using the space_id parameter. The data returned is in terms of daily usage. This is the format Posit Cloud returns data in. By default the function provides usage for the last 365 days. The data is saved to the data/posit_cloud_data/pscloud.csv. The function does not return anything. 
+
+```{r, eval=FALSE}
+space_id <- 123456
+get_pscloud_data(space_id=space_id)
+```
+
+
+## get_course_participation_data()
+
+This functions simply calls and leverages the `ds4owdretention` package. The package can be found here: https://github.com/openwashdata/ds4owdretention. The data is saved to data/course_participation/course_participation.csv
+
+```{r, eval=FALSE}
+get_course_participation_data()
+```
+
+
+## get_plausible_data(site_url, pagewise, token)
+
+This function retrieves data from Plausible. The data is pagewise if pagewise is set to TRUE. The data is saved to data/plausible_data/plausible.csv. The function does not return anything. Note: You need to save the API token for Plausible to a .Renviron file. The instructions to do so can be found here: https://solutions.posit.co/connections/db/best-practices/managing-credentials/#use-environment-variables. **Note**: This is not particularly secure, so ensure that you only store this on a machine that itself is secure and isn't accessed by people outside GHE.
+
+```{r, eval=FALSE}
+site_url <- "ds4owd-001.github.io/website"
+token <- Sys.getenv("TOKEN_NAME")
+pagewise = FALSE # Good idea to leave it to false if you don't want data on each subdomain.
+
+get_plausible_data(site_url=site_url, pagewise=pagewise, token=token)
+```
+
+
+## get_survey_data(sheet_url, service_acc_path, email, n_course_modules)
+
+This function retrieves data from a Google Sheet survey of course participants. The data is saved to data/survey_data/postsurvey.csv. The function does not return anything. Ideally, service accounts should be used for authentication, but an email is also fine (see [here](https://docs.google.com/document/d/1oFFUMNTwMZ8mJrOVbkq7zdJJgiLgeJWA6AmCsugIrEU/edit?tab=t.0) for more details). The function picks whichever is available. The `n_course_modules` parameter is required in order to correctly clean the data retrieved and assign it to the correct module. If the format of the survey changes, the function must also be adapted accordingly. 
+
+```{r, eval=FALSE}
+sheet_url <- "docs.google.com/spreadsheets/mysheet"
+service_acc_path <- "path/to/service/account.json"
+email <- "jane.doe@ethz.ch"
+n_course_modules <- 10
+
+# Using a service account
+get_survey_data(sheet_url=sheet_url, service_acc_path=service_acc_path, n_course_modules=n_course_modules)
+
+#OR 
+
+#Using email
+get_survey_data(sheet_url=sheet_url, email=email, n_course_modules=n_course_modules)
+
+```
+
+
+## get_metadata_gsheet(sheet_url, service_acc_path, email)
+
+This function retrieves metadata on published data packages that are currently available on the openwashdata GitHub, from a Google Sheet. The data is saved to data/metadata/publishing_metadata.csv. The function does not return anything. Ideally, service accounts should be used for authentication, but an email is also fine (see [here](https://docs.google.com/document/d/1oFFUMNTwMZ8mJrOVbkq7zdJJgiLgeJWA6AmCsugIrEU/edit?tab=t.0) for more details). The function picks whichever is available.
+
+```{r, eval=FALSE}
+sheet_url <- "docs.google.com/spreadsheets/mysheet" 
+service_acc_path <- "path/to/service/account.json"
+email <- "jane.doe@gmail.com"
+
+# Using a service account
+get_metadata_gsheet(sheet_url=sheet_url, service_acc_path=service_acc_path)
+
+#OR
+
+#Using email
+get_metadata_gsheet(sheet_url=sheet_url, email=email)
+```
+
+
+## get_registrations_data(repo, download_token, github_token)
+
+Data on course registrations was stored in GitHub. To obtain this, we need to read a raw CSV from GitHub and import it. For this, you first need access to the repo and your own Github Token as well as a Download token. Obtaining the download token is requires you to navigate to GitHub, open the file and click on "View Raw". Copy the last part of the URL after `?token=`. This is the raw token. Currently this is the only way to get data from this repo, however it is not advisable to keep using this method as the url can be temporary. 
+
+## write_db(user, password) 
+
+Using a user and password with **write** access to the Postgres database, all data pulled using the previous functions and saved to the data directory is subsequently written to the Postgres database. The default port, host and dbname all point to the Postgres database hosted on ETH servers. It is not intended to be changed frequently but can be edited in the function call if required. 
+
+```{r, eval=FALSE}
+user = "janedoe"
+password = "areallystrongpassword"
+
+write_db(user, password)
+```
+
+## archive_and_clean_db(user,password)
+
+**Use this with caution!**
+
+This function is intended to to archive old data and import new data into the existing tables. This should **only** be used if the previous course ended and a new course was carried out following which, old data is not required, especially for the dashboard. To run this function, the user must have **drop** and **create** permission for the database. Once again, this function points to the Postgres database hosted on ETH servers.
+
+```{r, eval=FALSE}
+archive_and_clean_db(user,password)
+```
+
+
