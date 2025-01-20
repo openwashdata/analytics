@@ -2,7 +2,7 @@
 % Please edit documentation in R/archive_and_clean_db.R
 \name{clean_db}
 \alias{clean_db}
-\title{Delete Tables}
+\title{Delete Tables from database for cleaning}
 \usage{
 clean_db(user = "", password = "")
 }
@@ -15,8 +15,13 @@ clean_db(user = "", password = "")
 Deletes all tables except admin generated and archives.
 }
 \description{
-Delete Tables
+Delete Tables from database for cleaning
 }
 \details{
 This is a helper function to clean the database. It deletes all tables except admin generated and archives.
+}
+\examples{
+\dontrun{
+clean_db("janedoe", "areallystrongpassword")
+}
 }

@@ -20,6 +20,9 @@ connect_db = function(user = "", password = "") {
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' write_table("data/survey_data/postsurvey.csv", data, con)
+#' }
 write_table = function(file, data, con) {
   tab_name = tools::file_path_sans_ext(basename(file))
   if (!DBI::dbExistsTable(con, tab_name)) {

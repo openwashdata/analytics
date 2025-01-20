@@ -20,3 +20,8 @@ Cleans and archives the remote Postgres Database
 \details{
 This is a helper function to clean and archive the database. It first archives all tables and then deletes them.
 }
+\examples{
+\dontrun{
+clean_and_archive_db("janedoe", "areallystrongpassword")
+}
+}

@@ -23,3 +23,8 @@ Write To Database Table
 This is a helper function to check if the table exists, if not it creates the table and writes to it.
 If the table exists, it overwrites existing data.
 }
+\examples{
+\dontrun{
+write_table("data/survey_data/postsurvey.csv", data, con)
+}
+}

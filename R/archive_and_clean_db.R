@@ -8,7 +8,7 @@ connect_db = function(user = "", password = "") {
   return(con)
 }
 
-#' Title
+#' Archive Database
 #'
 #' @param user Username for the database
 #' @param password Password to login for given username
@@ -19,6 +19,9 @@ connect_db = function(user = "", password = "") {
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' archive_db("janedoe", "areallystrongpassword")
+#' }
 archive_db = function(user = "", password = "") {
   con <- connect_db(user, password)
   # Get all tables in the database
@@ -38,7 +41,7 @@ archive_db = function(user = "", password = "") {
   }
 }
 
-#' Delete Tables
+#' Delete Tables from database for cleaning
 #'
 #' @param user Username for the database
 #' @param password Password to login for given username
@@ -49,6 +52,9 @@ archive_db = function(user = "", password = "") {
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' clean_db("janedoe", "areallystrongpassword")
+#' }
 clean_db = function(user = "", password = "") {
   con <- connect_db(user, password)
   # Get all tables in the database
@@ -75,6 +81,9 @@ clean_db = function(user = "", password = "") {
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' clean_and_archive_db("janedoe", "areallystrongpassword")
+#' }
 clean_and_archive_db = function(user = "", password = "") {
   # Ask for confirmation
   cat("This will archive all existing tables and delete them. Are you sure you want to continue?\n1. Yes\n2. No: ")

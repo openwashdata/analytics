@@ -2,7 +2,7 @@
 % Please edit documentation in R/archive_and_clean_db.R
 \name{archive_db}
 \alias{archive_db}
-\title{Title}
+\title{Archive Database}
 \usage{
 archive_db(user = "", password = "")
 }
@@ -15,8 +15,13 @@ archive_db(user = "", password = "")
 All tables in the database are copied and archived
 }
 \description{
-Title
+Archive Database
 }
 \details{
 This is a helper function to archive data before tables are deleted. Old archives are overwritten.
+}
+\examples{
+\dontrun{
+archive_db("janedoe", "areallystrongpassword")
+}
 }
