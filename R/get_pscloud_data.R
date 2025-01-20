@@ -13,7 +13,7 @@ get_pscloud_data <- function(space_id = 426916) {
   # Assuming you've already set up your space connection
   pcloud001 <- rscloud::rscloud_space(space_id = space_id)
 
-  # Set the start date to 1 year ago
+  # Set the start date to 365 days ago
   start_date <- as.Date(Sys.Date() - 365)
   end_date <- Sys.Date()  # Today's date
 
